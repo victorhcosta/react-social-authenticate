@@ -1,160 +1,166 @@
-# TSDX React User Guide
+<h1 align="center">
+   <a href="#"> React Social Authenticate </a>
+</h1>
 
-Congrats! You just saved yourself hours of work by bootstrapping this project with TSDX. Let’s get you oriented with what’s here and how to use it.
+<h3 align="center">
+    A package to make authentication with social networks using react hooks be simple!
+</h3>
 
-> This TSDX setup is meant for developing React component libraries (not apps!) that can be published to NPM. If you’re looking to build a React-based app, you should use `create-react-app`, `razzle`, `nextjs`, `gatsby`, or `react-static`.
+<p align="center">
+  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/victorhcosta/react-social-authenticate?color=%2304D361">
 
-> If you’re new to TypeScript and React, checkout [this handy cheatsheet](https://github.com/sw-yx/react-typescript-cheatsheet/)
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/victorhcosta/react-social-authenticate">
 
-## Commands
+  <a href="https://twitter.com/victor_min_ts">
+    <img alt="Follow me on Twitter" src="https://img.shields.io/twitter/url?url=https%3A%2F%2Fgithub.com%2Ftgmarinho%2FREADME-ecoleta">
+  </a>
 
-TSDX scaffolds your new library inside `/src`, and also sets up a [Parcel-based](https://parceljs.org) playground for it inside `/example`.
+  <a href="https://github.com/victorhcosta/react-social-authenticate/commits/master">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/victorhcosta/react-social-authenticate">
+  </a>
 
-The recommended workflow is to run TSDX in one terminal:
+   <img alt="License" src="https://img.shields.io/badge/license-MIT-brightgreen">
 
-```bash
-npm start # or yarn start
+   <a href="https://github.com/victorhcosta/react-social-authenticate/stargazers">
+    <img alt="Stargazers" src="https://img.shields.io/github/stars/victorhcosta/react-social-authenticate?style=social">
+  </a>
+</p>
+
+<h4 align="center"> Status: In development </h4>
+
+<p align="center">
+ <a href="#about">About</a> •
+ <a href="#features">Features</a> •
+ <a href="#example-of-use">Example of use</a> •
+ <a href="#contributing">Contributing</a> •
+ <a href="#contributors">Contributors</a> •
+ <a href="#author">Author</a> •
+ <a href="#user-content-license">License</a>
+
+</p>
+
+## About
+
+React Social Authenticate provide hooks to make easy implement login with social networks like Facebook and Linkedin in your react app.
+
+---
+
+## Features
+
+- [x] React hook for login with:
+  - [x] Facebook.
+  - [x] Google.
+  - [x] Linkedin.
+  - [] Twitter.
+  - [] Spotify.
+  - [] Microsoft.
+---
+
+## Example of use
+
+```tsx
+import { useFacebookLogin } from 'react-social-authenticate';
+
+interface IExampleLogin {
+	token: string,
+	user: {
+		name: string,
+		id: string,
+		email: string,
+		roles: [
+			{
+				name: string,
+				id: number
+			}
+		]
+	}
+};
+
+export const MyComponent = () => {
+	const facebook = useFacebookLogin<IExampleLogin>({
+		appId: `YOUR_FACEBOOK_APP_ID`,
+		language: 'pt-BR',
+		version: 8.0,
+		internalAuthenticateURL: 'http://your.backend.app.address/path-to-authenticate-in-your-app',
+	});
+
+	return (
+		<>
+			<h1 className="title"> Facebook </h1>
+			<div className="content">
+				Usuário:
+				<p>
+					{facebook?.userInfos && <img src={facebook?.userInfos?.picture?.data?.url} alt={`${facebook?.userInfos?.name} profile picture`} />}
+				</p>
+			</div>
+			<footer className="footer">
+				<button className="btn btn-success" onClick={facebook?.logIn}> login </button>
+				<button className="btn btn-danger" onClick={facebook?.logOut}> logout </button>
+			</footer>
+		</>
+	);
+};
 ```
 
-This builds to `/dist` and runs the project in watch mode so any edits you save inside `src` causes a rebuild to `/dist`.
+## Contributing
 
-Then run the example inside another:
+Thank you for being interested on making this package better. I encourage everyone to help improving this project with some new features, bug fixes and performance issues, transalting the docs for other languages. Please take a little bit of your time to read our guides, so this process can be faster and easier.
 
-```bash
-cd example
-npm i # or yarn to install dependencies
-npm start # or yarn start
-```
+## Contributors
 
-The default example imports and live reloads whatever is in `/dist`, so if you are seeing an out of date component, make sure TSDX is running in watch mode like we recommend above. **No symlinking required**, we use [Parcel's aliasing](https://parceljs.org/module_resolution.html#aliases).
+<table>
+  <tr>
+    <td align="center">
+		<a href="https://twitter.com/victor_min_ts">
+			<img style="border-radius: 50%;" src="https://avatars0.githubusercontent.com/u/18669568?s=460&u=e14077e1d6d221668fb9c52e1edeaea2c9ea6965&v=4" width="100px;" alt="Victor Costa Github profile picture"/>
+			<br />
+			<sub>
+				<b>
+					Victor Costa
+				</b>
+			</sub>
+		</a>
+		<br />
+	</td>
+  </tr>
+</table>
 
-To do a one-off build, use `npm run build` or `yarn build`.
+## How to contribute
 
-To run tests, use `npm test` or `yarn test`.
+1. Fork the project.
+2. Create a new branch with your changes: `git checkout -b feature/my-feature`
+3. Save your changes and create a commit message telling you what you did: `git commit -m" feature: My new feature "`
+4. Submit your changes: `git push origin my-feature`
+    > If you have any questions check this [guide on how to contribute](./CONTRIBUTING.md)
+---
 
-## Configuration
+## Author
 
-Code quality is set up for you with `prettier`, `husky`, and `lint-staged`. Adjust the respective fields in `package.json` accordingly.
+<a href="https://twitter.com/victor_min_ts">
+	<img style="border-radius: 50%;" src="https://avatars0.githubusercontent.com/u/18669568?s=460&u=e14077e1d6d221668fb9c52e1edeaea2c9ea6965&v=4" width="100px;" alt="Victor Costa"/>
+	<br />
+	<sub>
+		<b>
+			Victor Costa
+		</b>
+	</sub>
+</a>
+<br />
 
-### Jest
+[![Twitter Badge](https://img.shields.io/badge/-@victor_min_ts-1ca0f1?style=flat-square&labelColor=1ca0f1&logo=twitter&logoColor=white&link=https://twitter.com/victor_min_ts)](https://twitter.com/victor_min_ts)
+[![Linkedin Badge](https://img.shields.io/badge/-Victor-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/victor-hugo-oliveira-da-costa-b5b9a711b/)](https://www.linkedin.com/in/victor-hugo-oliveira-da-costa-b5b9a711b/)
+[![Gmail Badge](https://img.shields.io/badge/-victor.v.h.o.c@outlook.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:victor.v.h.o.c@outlook.com)](mailto:victor.v.h.o.c@outlook.com)
 
-Jest tests are set up to run with `npm test` or `yarn test`.
+---
 
-### Bundle analysis
+## License
 
-Calculates the real cost of your library using [size-limit](https://github.com/ai/size-limit) with `npm run size` and visulize it with `npm run analyze`.
+This project is under the license [MIT](./LICENSE).
 
-#### Setup Files
+Made with love by Victor Costa 👋🏽 [Get in Touch!](https://twitter.com/victor_min_ts)
 
-This is the folder structure we set up for you:
+---
 
-```txt
-/example
-  index.html
-  index.tsx       # test your component here in a demo app
-  package.json
-  tsconfig.json
-/src
-  index.tsx       # EDIT THIS
-/test
-  blah.test.tsx   # EDIT THIS
-.gitignore
-package.json
-README.md         # EDIT THIS
-tsconfig.json
-```
+## Versions of README
 
-#### React Testing Library
-
-We do not set up `react-testing-library` for you yet, we welcome contributions and documentation on this.
-
-### Rollup
-
-TSDX uses [Rollup](https://rollupjs.org) as a bundler and generates multiple rollup configs for various module formats and build settings. See [Optimizations](#optimizations) for details.
-
-### TypeScript
-
-`tsconfig.json` is set up to interpret `dom` and `esnext` types, as well as `react` for `jsx`. Adjust according to your needs.
-
-## Continuous Integration
-
-### GitHub Actions
-
-Two actions are added by default:
-
-- `main` which installs deps w/ cache, lints, tests, and builds on all pushes against a Node and OS matrix
-- `size` which comments cost comparison of your library on every pull request using [`size-limit`](https://github.com/ai/size-limit)
-
-## Optimizations
-
-Please see the main `tsdx` [optimizations docs](https://github.com/palmerhq/tsdx#optimizations). In particular, know that you can take advantage of development-only optimizations:
-
-```js
-// ./types/index.d.ts
-declare var __DEV__: boolean;
-
-// inside your code...
-if (__DEV__) {
-  console.log('foo');
-}
-```
-
-You can also choose to install and use [invariant](https://github.com/palmerhq/tsdx#invariant) and [warning](https://github.com/palmerhq/tsdx#warning) functions.
-
-## Module Formats
-
-CJS, ESModules, and UMD module formats are supported.
-
-The appropriate paths are configured in `package.json` and `dist/index.js` accordingly. Please report if any issues are found.
-
-## Deploying the Example Playground
-
-The Playground is just a simple [Parcel](https://parceljs.org) app, you can deploy it anywhere you would normally deploy that. Here are some guidelines for **manually** deploying with the Netlify CLI (`npm i -g netlify-cli`):
-
-```bash
-cd example # if not already in the example folder
-npm run build # builds to dist
-netlify deploy # deploy the dist folder
-```
-
-Alternatively, if you already have a git repo connected, you can set up continuous deployment with Netlify:
-
-```bash
-netlify init
-# build command: yarn build && cd example && yarn && yarn build
-# directory to deploy: example/dist
-# pick yes for netlify.toml
-```
-
-## Named Exports
-
-Per Palmer Group guidelines, [always use named exports.](https://github.com/palmerhq/typescript#exports) Code split inside your React app instead of your React library.
-
-## Including Styles
-
-There are many ways to ship styles, including with CSS-in-JS. TSDX has no opinion on this, configure how you like.
-
-For vanilla CSS, you can include it at the root directory and add it to the `files` section in your `package.json`, so that it can be imported separately by your users and run through their bundler's loader.
-
-## Publishing to NPM
-
-We recommend using [np](https://github.com/sindresorhus/np).
-
-## Usage with Lerna
-
-When creating a new package with TSDX within a project set up with Lerna, you might encounter a `Cannot resolve dependency` error when trying to run the `example` project. To fix that you will need to make changes to the `package.json` file _inside the `example` directory_.
-
-The problem is that due to the nature of how dependencies are installed in Lerna projects, the aliases in the example project's `package.json` might not point to the right place, as those dependencies might have been installed in the root of your Lerna project.
-
-Change the `alias` to point to where those packages are actually installed. This depends on the directory structure of your Lerna project, so the actual path might be different from the diff below.
-
-```diff
-   "alias": {
--    "react": "../node_modules/react",
--    "react-dom": "../node_modules/react-dom"
-+    "react": "../../../node_modules/react",
-+    "react-dom": "../../../node_modules/react-dom"
-   },
-```
-
-An alternative to fixing this problem would be to remove aliases altogether and define the dependencies referenced as aliases as dev dependencies instead. [However, that might cause other problems.](https://github.com/palmerhq/tsdx/issues/64)
+[Portuguese](./README-ptBR.md) | [English](./README.md)
