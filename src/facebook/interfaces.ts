@@ -4,7 +4,16 @@ export interface IFacebookLoginInfos {
 	readonly version: number;
 	readonly appId: string;
 	readonly language: string;
+	/**
+	 * @description the route of your back-end application that will be responsible for authenticating
+	 * the user in your app
+	 * @param data returned by Facebook and sent in the body for internalAuthenticateURL
+	 * accessToken, dataAccessExpirationTime, expiresIn and userID
+	 */
 	readonly internalAuthenticateURL?: string;
+	/**
+	 * @description fields that you want to receive from Facebook
+	 */
 	readonly fields?: string[];
 	readonly xfbml?: boolean;
 	readonly cookie?: boolean;

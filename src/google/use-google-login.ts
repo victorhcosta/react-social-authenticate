@@ -10,6 +10,10 @@ import {
 
 const customWindow: any = window;
 
+/**
+ * @description React hook for authentication with Google
+ * internalUser is the return of your own login app
+ */
 export const useGoogleLogin = <T>(googleLoginInfos: IGoogleLoginInfos) => {
 	const params = {
 		client_id: googleLoginInfos.appId,

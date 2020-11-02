@@ -16,6 +16,10 @@ const facebookLoginDefaultParams: Partial<IFacebookLoginInfos> = {
 	fields: ['name', 'email', 'picture'],
 };
 
+/**
+ * @description React hook for authentication with Facebook
+ * internalUser is the return of your own login app
+ */
 export const useFacebookLogin = <T>(facebookLoginParams: IFacebookLoginInfos) => {
 	const facebookLoginInfos = {
 		...facebookLoginDefaultParams,
@@ -63,7 +67,7 @@ export const useFacebookLogin = <T>(facebookLoginParams: IFacebookLoginInfos) =>
 			cookie: facebookLoginInfos?.cookie,
 		};
 
-		customWindow.fbAsyncInit = () => customWindow.FB.init(facebookInit);
+		customWindow.fbAsyncInit = () => customWindow?.FB?.init(facebookInit);
 	}, [facebookLoginInfos]);
 
 	const authenticate = (response: IFacebookLoginResponse) => {
@@ -75,16 +79,14 @@ export const useFacebookLogin = <T>(facebookLoginParams: IFacebookLoginInfos) =>
 				fields: facebookLoginInfos?.fields?.join(','),
 			};
 
-			customWindow.FB.api(
+			customWindow?.FB?.api(
 				'/me',
 				requestParams,
 				(user: IFaceBookUserInfos) => {
 					if (facebookLoginInfos.internalAuthenticateURL) {
 						const userData = {
 							accessToken: response.authResponse?.accessToken,
-							dataAccessExpirationTime:
-								response.authResponse
-									?.data_access_expiration_time,
+							dataAccessExpirationTime: response.authResponse?.data_access_expiration_time,
 							expiresIn: response.authResponse?.expiresIn,
 							userID: response.authResponse?.userID,
 						};
@@ -108,14 +110,14 @@ export const useFacebookLogin = <T>(facebookLoginParams: IFacebookLoginInfos) =>
 	};
 
 	const logIn = () =>
-		customWindow.FB.login(
+		customWindow?.FB?.login(
 			(loginResponse: IFacebookLoginResponse) =>
 				authenticate(loginResponse),
 			true,
 		);
 
 	const logOut = () => {
-		customWindow.FB.logout();
+		customWindow?.FB?.logout();
 		setInternalUser(undefined);
 		setUser(undefined);
 	};

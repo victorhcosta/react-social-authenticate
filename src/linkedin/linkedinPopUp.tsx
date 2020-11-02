@@ -2,6 +2,9 @@ import React from 'react';
 
 import { ILinkedinAccessTokenEvent } from './interfaces';
 
+/**
+ * @description Popup to take Linkedin accessToken from URL (use only with usePopup true because that component will close the window)
+ */
 export const LinkedinLoginPopUp = () => {
 	const query = new URLSearchParams(window.location.search);
 

@@ -4,6 +4,10 @@ import axios, { AxiosResponse } from 'axios';
 
 import { ILinkedinAccessTokenEvent, ILinkedinLoginParams } from './interfaces';
 
+/**
+ * @description React hook for authentication with Linkedin
+ * internalUser is the return of your own login app
+ */
 export const useLinkedinLogin = <T>(linkedinLoginParams: ILinkedinLoginParams) => {
 	const [internalUser, setInternalUser] = useState<T>();
 	const [accessToken, setAccessToken] = useState('');

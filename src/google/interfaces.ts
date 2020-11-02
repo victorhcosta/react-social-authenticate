@@ -1,5 +1,11 @@
 export interface IGoogleLoginInfos {
 	readonly appId: string;
+	/**
+	 * @description the route your back-end application that will be responsible for authenticating
+	 * the user in your app
+	 * @param data returned by Google and sent in the body for internalAuthenticateURL
+	 * expiresAt, expiresIn, idToken and accessToken
+	 */
 	readonly internalAuthenticateURL?: string;
 }
 
